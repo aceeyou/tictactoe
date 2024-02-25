@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Honk&family=Micro+5&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace;
+  color: rgb(224, 224, 224);
+}
+
+body {
+  width: 100vw;
+  height: 100svh;
+  font-size: 16px;
+  background-color: #242424;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+.wrapper {
+  /* background-color: blueviolet; */
+  width: min(80%, 800px);
+  margin-inline: auto;
+}
+
+header {
+  text-align: center;
+}
+
+header {
+  padding-block: 3rem 1rem;
+  & h1 {
+    margin-bottom: 2rem;
+    font-family: "Honk", system-ui;
+    font-size: 6.5rem;
+    font-weight: 900;
+    letter-spacing: 0.2rem;
+  }
+  & ul {
+    display: flex;
+    flex-direction: row;
+    margin-inline: auto;
+    width: max-content;
+    & li {
+      border-radius: 3px;
+      & button {
+        padding: 8px 50px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2rem;
+        transition: ease-out 150ms;
+        cursor: pointer;
+
+        &:hover {
+          background-color: white;
+          color: rgb(30, 8, 228);
+        }
+      }
+    }
+
+    .btn__play {
+      background-color: white;
+      transition: ease-in-out 150ms;
+
+      & button {
+        color: rgb(30, 8, 228);
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    .btn__reset,
+    .btn__quit {
+      display: none;
+    }
+  }
+
+  & div:has(> #endgame_message) {
+    visibility: hidden;
+    margin-block: 1.4rem 2rem;
+    /* transition: ease-in all 250ms; */
+    font-family: "Nunito", sans-serif;
+    font-size: 1.25rem;
+    transition: 150ms;
+
+    #winner_banner {
+      font-family: "Honk", system-ui;
+      font-size: 2rem;
+      margin-inline: 1rem;
+    }
+  }
+}
+
+#headsup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  margin-inline: auto;
+  text-align: end;
+
+  .player_playing {
+    font-family: "Bebas Neue", sans-serif;
+
+    #current_player {
+      font-family: "Honk", system-ui;
+      font-size: 2.5rem;
+      padding-left: 1rem;
+    }
+  }
+
+  #scoreboard {
+    font-family: "Bebas Neue", sans-serif;
+
+    #score_x {
+      padding-right: 1rem;
+    }
+
+    .score {
+      font-family: "Honk", system-ui;
+      font-size: 2.5rem;
+      padding-left: 0.4rem;
+    }
+  }
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 133px);
+  grid-template-rows: repeat(3, 133px);
+  width: 400px;
+  height: 400px;
+  margin-inline: auto;
+  margin-top: 1.25rem;
+
+  & div {
+    border: 1px solid white;
+    margin: 0;
+    /* padding: 0.8rem; */
+    padding-left: 0.85rem;
+    font-family: "Micro 5", sans-serif;
+    font-size: 10rem;
+    text-align: center;
+    line-height: 1;
+    transition: ease-out 100ms;
+    cursor: pointer;
+
+    &:hover:empty {
+      background-color: rgba(255, 255, 255);
+      color: #ff3faf;
+      &::after {
+        content: attr(data-value);
+      }
+    }
+  }
+}

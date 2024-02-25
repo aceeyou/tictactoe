@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="app.js" defer></script>
+    <title>Tictactoe</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>TICTACTOE</h1>
+        <nav>
+          <ul>
+            <li class="btn__play">
+              <button id="play_btn" aria-label="Play Tictactoe Game">
+                Play
+              </button>
+            </li>
+            <li class="btn__reset">
+              <button id="reset_btn" aria-label="Reset Tictactoe Game">
+                Reset
+              </button>
+            </li>
+            <li class="btn__quit">
+              <button id="quit_btn" aria-label="Quit Tictactoe Game">
+                Quit
+              </button>
+            </li>
+          </ul>
+        </nav>
+        <div>
+          <p id="endgame_message"></p>
+        </div>
+      </header>
+      <main>
+        <div id="headsup">
+          <p class="player_playing">
+            Playing: <span id="current_player"></span>
+          </p>
+          <p id="scoreboard">
+            X: <span id="score_x" class="score">0</span>
+            O:
+            <span id="score_o" class="score">0</span>
+          </p>
+        </div>
+        <div id="board">
+          <div id="0" class="cell">X</div>
+          <div id="1" class="cell"></div>
+          <div id="2" class="cell"></div>
+          <div id="3" class="cell"></div>
+          <div id="4" class="cell"></div>
+          <div id="5" class="cell">X</div>
+          <div id="6" class="cell"></div>
+          <div id="7" class="cell">O</div>
+          <div id="8" class="cell"></div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
