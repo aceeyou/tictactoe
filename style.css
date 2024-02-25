@@ -24,9 +24,11 @@ button {
 }
 
 .wrapper {
+  padding-top: 5rem;
   /* background-color: blueviolet; */
-  width: min(80%, 800px);
+  width: min(95%, 800px);
   margin-inline: auto;
+  transition: 100ms;
 }
 
 header {
@@ -38,7 +40,7 @@ header {
   & h1 {
     margin-bottom: 2rem;
     font-family: "Honk", system-ui;
-    font-size: 6.5rem;
+    font-size: clamp(4rem, 12vw + 1rem, 6.5rem);
     font-weight: 900;
     letter-spacing: 0.2rem;
   }
@@ -50,6 +52,7 @@ header {
     & li {
       border-radius: 3px;
       & button {
+        border-radius: 3px;
         padding: 8px 50px;
         font-family: "Bebas Neue", sans-serif;
         font-size: 2rem;
@@ -63,7 +66,9 @@ header {
       }
     }
 
-    .btn__play {
+    .btn__play,
+    .btn__reset,
+    .btn__quit {
       background-color: white;
       transition: ease-in-out 150ms;
 
@@ -78,6 +83,10 @@ header {
     .btn__reset,
     .btn__quit {
       display: none;
+    }
+
+    .btn__reset {
+      margin-right: 1rem;
     }
   }
 
@@ -101,7 +110,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
+  width: min(95%, 400px);
   margin-inline: auto;
   text-align: end;
 
@@ -132,15 +141,17 @@ header {
 
 #board {
   display: grid;
-  grid-template-columns: repeat(3, 133px);
-  grid-template-rows: repeat(3, 133px);
-  width: 400px;
-  height: 400px;
+  grid-template-columns: repeat(3, min(33.34%, 134px));
+  grid-template-rows: repeat(3, min(50%, 133px));
+  width: min(100%, 400px);
+  aspect-ratio: 1 / 1;
   margin-inline: auto;
   margin-top: 1.25rem;
+  border: 1px solid whitesmoke;
 
   & div {
-    border: 1px solid white;
+    border: 2px solid whitesmoke;
+    margin: 0;
     margin: 0;
     /* padding: 0.8rem; */
     padding-left: 0.85rem;
@@ -158,5 +169,11 @@ header {
         content: attr(data-value);
       }
     }
+  }
+}
+
+@media (min-width: 700px) {
+  .wrapper {
+    padding-top: 2rem;
   }
 }

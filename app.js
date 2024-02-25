@@ -108,7 +108,6 @@ function updatePlayerHover() {
 }
 
 function verifyPlay(cell, cellIndex) {
-  console.log(current_player);
   if (winner || moves === 9) {
     reset();
     return;
