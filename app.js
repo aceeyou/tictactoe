@@ -43,6 +43,7 @@ function reset() {
     cell.innerHTML = "";
     cell.style.backgroundColor = "";
   });
+  updateCellStyle("white", "#ff3faf");
   updatePlayerHover();
 }
 
@@ -61,6 +62,7 @@ function quit() {
 }
 
 function stopGame() {
+  setDataAttribute("-");
   endgame_message.style.visibility = "visible";
   endgame_message.innerHTML = `PLAYER <span id='winner_banner'>${winner}</span> WON THE ROUND`;
 }
@@ -73,6 +75,25 @@ function updateScoreboard() {
 
   scoreX.innerHTML = scoreboard.x;
   scoreO.innerHTML = scoreboard.o;
+}
+
+function updateCellStyle(bg, color, cursor) {
+  if (cursor !== "none") cursor = "pointer";
+  cells.forEach((cell) => {
+    cell.style.setProperty("--board-cell-hover-bg-color", bg);
+    cell.style.setProperty("--board-cell-font-color", color);
+    cell.style.setProperty("--board-cursor", cursor);
+  });
+}
+
+function setDataAttribute(value) {
+  cells.forEach((cell) => {
+    cell.setAttribute("data-value", value);
+  });
+
+  if (value === "-") {
+    updateCellStyle("transparent", "#383737", "none");
+  }
 }
 
 function winnerChecker() {
@@ -97,22 +118,18 @@ function winnerChecker() {
 
       updateScoreboard();
       stopGame();
+      setDataAttribute("-");
+      return;
     }
   }
 }
 
 function updatePlayerHover() {
-  cells.forEach((cell) => {
-    cell.setAttribute("data-value", current_player);
-  });
+  setDataAttribute(current_player);
 }
 
 function verifyPlay(cell, cellIndex) {
-  if (winner || moves === 9) {
-    reset();
-    return;
-  }
-  if (plays[cellIndex] === undefined) {
+  if (plays[cellIndex] === undefined && winner === "") {
     moves++;
     cell.innerHTML = current_player;
     plays[cellIndex] = current_player;
@@ -125,6 +142,11 @@ function verifyPlay(cell, cellIndex) {
 
     updatePlayerHover();
   }
+  if (winner) {
+    setDataAttribute("-");
+    updateCellStyle("transparent", "#383737", "none");
+    return;
+  }
 }
 
 function play() {
@@ -136,8 +158,8 @@ function play() {
   endgame_message.style.visibility = "visible";
   endgame_message.innerHTML = "Click the Reset button to play another round";
 
+  setDataAttribute(current_player);
   cells.forEach((cell, index) => {
-    cell.setAttribute("data-value", current_player);
     cell.addEventListener("click", () => verifyPlay(cell, index));
   });
 }

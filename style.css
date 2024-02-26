@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Honk&family=Micro+5&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+:root {
+  --board-cell-hover-bg-color: white;
+  --board-cell-font-color: #ff3faf;
+  --board-cursor: pointer;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -159,12 +165,12 @@ header {
     font-size: 10rem;
     text-align: center;
     line-height: 1;
-    transition: ease-out 100ms;
-    cursor: pointer;
+    transition: ease-in background-color 100ms;
+    cursor: var(--board-cursor);
 
     &:hover:empty {
-      background-color: rgba(255, 255, 255);
-      color: #ff3faf;
+      background-color: var(--board-cell-hover-bg-color);
+      color: var(--board-cell-font-color);
       &::after {
         content: attr(data-value);
       }
